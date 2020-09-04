@@ -1,0 +1,108 @@
+#js-cookie-consent-box {
+  background-color: #fff;
+  min-width: 200px;
+  max-width: 400px;
+  width: 94%;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  overflow: hidden;
+  -webkit-transition: height 1s ease;
+  -moz-transition: height 1s ease;
+  -o-transition: height 1s ease;
+  transition: height 1s ease;
+}
+
+#js-cookie-consent-box.slide-up {
+  height: 250px;
+}
+
+.slide-down {
+  height: 95%;
+}
+
+@keyframes slide-in {
+  100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateY(0%); }
+}
+  
+@keyframes slide-out {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
+
+@-webkit-keyframes slide-out {
+  0% { -webkit-transform: translateY(0%); }
+  100% { -webkit-transform: translateY(-100%); }
+}
+
+.js-cookie-consent-main-text-box {
+  color: #999;
+  padding: 0 20px 20px 20px;
+  font-size: 14px;
+}
+
+.js-cookie-consent-main-text-box .learn-more {
+  color: #999;
+  text-decoration: underline;
+  outline: none;
+}
+
+.js-cookie-consent-toogle-box {
+  color: #999;
+  padding: 0 20px 20px 20px;
+  font-size: 14px;
+  overflow-y: scroll;
+  height: 65%;
+}
+
+.btn-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #fff;
+}
+
+.btn {
+  position: absolute;
+  bottom: 30px;
+  letter-spacing: 1px;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn.accept {
+  left: 15px;
+  background-color: #42ab9e;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn.open-settings {
+  right: 15px;
+  background-color: transparent;
+  color: #999;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 480px) {
+  #js-cookie-consent-box {
+    width: 100%;
+    bottom: 50px;
+    right: 50px;
+  }
+
+  .slide-down {
+    height: 90%;
+  }
+}
