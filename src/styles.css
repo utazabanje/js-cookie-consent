@@ -1,3 +1,7 @@
+body {
+  background-color: #42ab9e;
+}
+
 #js-cookie-consent-box {
   background-color: #fff;
   min-width: 200px;
@@ -7,7 +11,6 @@
   bottom: 10px;
   right: 10px;
   border-radius: 10px;
-  border: 1px solid black;
   overflow: hidden;
   -webkit-transition: height 1s ease;
   -moz-transition: height 1s ease;
@@ -51,6 +54,13 @@
   color: #999;
   text-decoration: underline;
   outline: none;
+  position: relative;
+}
+
+.js-cookie-consent-main-text-box .learn-more svg {
+  position: absolute;
+  width: 20px;
+  right: -16px;
 }
 
 .js-cookie-consent-toogle-box {
@@ -58,7 +68,18 @@
   padding: 0 20px 20px 20px;
   font-size: 14px;
   overflow-y: scroll;
-  height: 65%;
+  height: 66%;
+}
+
+.js-cookie-consent-toogle-box-inner {
+  position: relative;
+}
+
+.settings-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #000;
+  width: 78%;
 }
 
 .btn-box {
@@ -72,8 +93,6 @@
 }
 
 .btn {
-  position: absolute;
-  bottom: 30px;
   letter-spacing: 1px;
   padding: 10px 15px;
   border: none;
@@ -82,17 +101,92 @@
 }
 
 .btn.accept {
-  left: 15px;
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
   background-color: #42ab9e;
   color: #fff;
   border-radius: 5px;
 }
 
 .btn.open-settings {
-  right: 15px;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
   background-color: transparent;
   color: #999;
   text-decoration: underline;
+}
+
+.save-cookies-btn-box {
+  margin-top: 30px;
+}
+
+.btn.save-cookies {
+  left: 15px;
+  background-color: #42ab9e;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.switch {
+  position: absolute;
+  right: 0;
+  top: -7px;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #42ab9e;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #42ab9e;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 @media screen and (min-width: 480px) {
