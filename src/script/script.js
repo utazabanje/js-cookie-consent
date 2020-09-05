@@ -1,35 +1,20 @@
 const cookieConsent = (config) => {
   sessionStorage.setItem("categories", JSON.stringify(["essential"]));
   let cookieAvailable = getCookie(config.cookieName);
-  let openSettings = document.getElementById("openCookieSettings");
   let box = document.getElementById("js-cookie-consent-box");
   let cookieToggleBox = document.querySelector(".js-cookie-consent-toogle-box");
   let switchBtn = document.querySelectorAll(".switch");
-  let saveCookiesSettings = document.getElementById("saveCookieSettings");
-  let acceptAllCookies = document.getElementById("acceptAllCookies");
-  let learnMoreBtn = document.querySelector(".learn-more");
-  let companyName = document.querySelectorAll(".company-name");
+  let mainTitle = document.querySelector(".title");
+  let learnMoreBox = document.querySelector(".learn-more-box");
+  let saveCookieBox = document.querySelector(".save-cookies-btn-box");
+  let btnBox = document.querySelector(".btn-box");
 
   if (cookieAvailable !== null) {
     box.style.display = "none";
     return;
   } else {
     cookieToggleBox.style.display = "none";
-    learnMoreBtn.setAttribute("href", config.learnMore);
-    companyName.forEach((elem) => (elem.innerHTML = config.companyName));
-
-    openSettings.addEventListener("click", () => {
-      let isOpen = box.classList.contains("slide-up");
-      box.setAttribute("class", isOpen ? "slide-down" : "slide-up");
-
-      if (cookieToggleBox.style.display === "none") {
-        cookieToggleBox.style.display = "block";
-      } else {
-        setTimeout(() => {
-          cookieToggleBox.style.display = "none";
-        }, 750);
-      }
-    });
+    mainTitle.innerHTML = config.title;
 
     switchBtn.forEach((item) => {
       item.addEventListener("click", (e) => {
@@ -46,24 +31,75 @@ const cookieConsent = (config) => {
       });
     });
 
-    saveCookiesSettings.addEventListener("click", () => {
-      let savedCookies = sessionStorage.getItem("categories");
-
-      setCookie("cookiesGDPR", savedCookies, config.expiration);
-      box.style.display = "none";
-    });
-
-    acceptAllCookies.addEventListener("click", () => {
-      setCookie(
-        "cookiesGDPR",
-        JSON.stringify(["essential", "marketing", "analytics"]),
-        config.expiration
-      );
-      box.style.display = "none";
-    });
-
     acceptOnScroll(config, box);
+
+    createLearnMoreLink(learnMoreBox, config.learnMore);
+    createSaveCookieBtn(saveCookieBox, box, config.expiration);
+    createAcceptAndSettingsBtn(btnBox, box, cookieToggleBox, config.expiration);
   }
+};
+
+const createLearnMoreLink = (elem, link) => {
+  let learnMore = document.createElement("a");
+  learnMore.innerHTML = "Learn More";
+  learnMore.setAttribute("href", link);
+  learnMore.setAttribute("target", "_blank");
+  learnMore.setAttribute("rel", "noopener noreferrer");
+  learnMore.classList.add("learn-more");
+
+  elem.appendChild(learnMore);
+};
+
+const createSaveCookieBtn = (elem, box, expiration) => {
+  let saveCookie = document.createElement("button");
+  saveCookie.innerHTML = "Save cookie settings";
+  saveCookie.setAttribute("id", "saveCookieSettings");
+  saveCookie.classList.add("btn", "save-cookies");
+
+  saveCookie.addEventListener("click", () => {
+    let savedCookies = sessionStorage.getItem("categories");
+
+    setCookie("cookiesGDPR", savedCookies, expiration);
+    box.style.display = "none";
+  });
+
+  elem.appendChild(saveCookie);
+};
+
+const createAcceptAndSettingsBtn = (elem, box, toggleBox, expiration) => {
+  let acceptAllCookies = document.createElement("button");
+  let openSettings = document.createElement("button");
+  acceptAllCookies.innerHTML = "Accept all";
+  acceptAllCookies.setAttribute("id", "acceptAllCookies");
+  acceptAllCookies.classList.add("btn", "accept");
+  openSettings.innerHTML = "Cookie settings";
+  openSettings.setAttribute("id", "openCookieSettings");
+  openSettings.classList.add("btn", "open-settings");
+
+  acceptAllCookies.addEventListener("click", () => {
+    setCookie(
+      "cookiesGDPR",
+      JSON.stringify(["essential", "marketing", "analytics"]),
+      expiration
+    );
+    box.style.display = "none";
+  });
+
+  openSettings.addEventListener("click", () => {
+    let isOpen = box.classList.contains("slide-up");
+    box.setAttribute("class", isOpen ? "slide-down" : "slide-up");
+
+    if (toggleBox.style.display === "none") {
+      toggleBox.style.display = "block";
+    } else {
+      setTimeout(() => {
+        toggleBox.style.display = "none";
+      }, 750);
+    }
+  });
+
+  elem.appendChild(acceptAllCookies);
+  elem.appendChild(openSettings);
 };
 
 const toggleValueInArray = (value) => {
