@@ -3,26 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-  <title>Js cookie consent</title>
+  <title>js-cookie-consent</title>
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://use.typekit.net/cjq5qks.css">
 </head>
 <body>
-  
   <div id="js-cookie-consent-box" class="slide-up">
-
     <div class="js-cookie-consent-main-text-box">
       <p class="title">
-        We use cookies <span aria-hidden="true">🍪</span> and pixels to provide you with the best browsing experience. The data collected by cookies and pixels is used to optimise the website for our visitors and deliver targeted information to Expatrio users and prospective Expatrio customers. This data is used as part of our EU and global operations.
+        We use cookies <span aria-hidden="true">🍪</span> and pixels to provide you with the best browsing experience. The data collected by cookies and pixels is used to optimise the website for our visitors and deliver targeted information to <span class="company-name"></span> users and prospective <span class="company-name"></span> customers. This data is used as part of our EU and global operations.
       </p>
 
-      <a href="https://www.expatrio.com/privacy-policy" class="learn-more" target="_blank" rel="noopener noreferrer">
+      <a href="" class="learn-more" target="_blank" rel="noopener noreferrer">
         Learn more
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false" class="br bv le nk nl"><path d="M22 11L10.5 22.5M10.44 11H22v11.56" fill="#999"></path></svg>
       </a>
     </div>
-
     <div class="js-cookie-consent-toogle-box">
       <div class="js-cookie-consent-toogle-box-inner">
         <p class="settings-title">Essential cookies</p>
@@ -52,13 +49,20 @@
         <button id="saveCookieSettings" class="btn save-cookies">Save cookie settings</button>
       </div>
     </div>
-
     <div class="btn-box">
       <button id="acceptAllCookies" class="btn accept">Accept all</button>
       <button id="openCookieSettings" class="btn open-settings">Cookie settings</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" type="text/javascript"></script>
+  <script >
+    cookieConsent({
+      cookieName: 'cookiesGDPR',
+      companyName: 'Expatrio',
+      learnMore: 'https://www.expatrio.com/privacy-policy',
+      expiration: 7
+    });
+  </script>
 </body>
 </html>

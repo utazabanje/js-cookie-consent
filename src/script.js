@@ -1,19 +1,22 @@
 const cookieConsent = (config) => {
   sessionStorage.setItem('categories', JSON.stringify(['essential']))
-  let cookieAvailable = getCookie(config.name)
+  let cookieAvailable = getCookie(config.cookieName)
   let openSettings = document.getElementById('openCookieSettings');
   let box = document.getElementById('js-cookie-consent-box');
   let cookieToggleBox = document.querySelector('.js-cookie-consent-toogle-box');
   let switchBtn = document.querySelectorAll('.switch');
   let saveCookiesSettings = document.getElementById('saveCookieSettings');
   let acceptAllCookies = document.getElementById('acceptAllCookies');
-  
+  let learnMoreBtn = document.querySelector('.learn-more');
+  let companyName = document.querySelectorAll('.company-name');
 
   if (cookieAvailable !== null) {
     box.style.display = 'none';
     return
   } else {
     cookieToggleBox.style.display = 'none';
+    learnMoreBtn.setAttribute('href', config.learnMore);
+    companyName.forEach((elem) => elem.innerHTML = config.companyName);
 
     openSettings.addEventListener('click', () => {
       let isOpen = box.classList.contains('slide-up');
@@ -46,12 +49,12 @@ const cookieConsent = (config) => {
     saveCookiesSettings.addEventListener('click', () => {
       let savedCookies = sessionStorage.getItem('categories');
 
-      setCookie('cookiesGDPR', savedCookies, 7)
+      setCookie('cookiesGDPR', savedCookies, config.expiration)
       box.style.display = 'none';
     });
 
     acceptAllCookies.addEventListener('click', () => {
-      setCookie('cookiesGDPR', JSON.stringify(['essential', 'marketing', 'analytics']), 7)
+      setCookie('cookiesGDPR', JSON.stringify(['essential', 'marketing', 'analytics']), config.expiration)
       box.style.display = 'none';
     });
   }
@@ -73,7 +76,6 @@ const toggleValueInArray = (value) => {
 
 const toggleChecked = (el) => {
   let checked = el.parentNode.childNodes[1].hasAttribute('checked');
-
   return (!checked) ? el.parentNode.childNodes[1].setAttribute('checked', '') : el.parentNode.childNodes[1].removeAttribute('checked');
 };
 
@@ -105,6 +107,3 @@ const setCookie = (name, value, exdays, path) => {
 
 	document.cookie = name + '=' + value + ';' + expires + ';path='+(path ? path : '/');
 };
-
-
-cookieConsent({name: 'cookiesGDPR'});
