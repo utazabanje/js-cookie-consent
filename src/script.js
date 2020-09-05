@@ -57,6 +57,8 @@ const cookieConsent = (config) => {
       setCookie('cookiesGDPR', JSON.stringify(['essential', 'marketing', 'analytics']), config.expiration)
       box.style.display = 'none';
     });
+
+    acceptOnScroll(config, box)
   }
 };
 
@@ -77,6 +79,24 @@ const toggleValueInArray = (value) => {
 const toggleChecked = (el) => {
   let checked = el.parentNode.childNodes[1].hasAttribute('checked');
   return (!checked) ? el.parentNode.childNodes[1].setAttribute('checked', '') : el.parentNode.childNodes[1].removeAttribute('checked');
+};
+
+const acceptCookies = (config, box) => {
+  setCookie('cookiesGDPR', JSON.stringify(['essential', 'marketing', 'analytics']), config.expiration);
+  box.style.display = 'none';
+}
+
+const amountScrolled = () => {
+  return window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight;
+};
+
+const acceptOnScroll = (config, box) => {
+  window.addEventListener('scroll', function _listener() {
+    if(amountScrolled()) {
+      acceptCookies(config, box);
+      window.removeEventListener('click', _listener);
+    }
+  });
 };
 
 const getCookie = (name) => {
