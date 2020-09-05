@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
   <title>Js cookie consent</title>
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.typekit.net/cjq5qks.css">
 </head>
 <body>
   
@@ -25,36 +26,36 @@
     <div class="js-cookie-consent-toogle-box">
       <div class="js-cookie-consent-toogle-box-inner">
         <p class="settings-title">Essential cookies</p>
-        <label class="switch essential">
+        <label class="switch">
           <input type="checkbox" checked>
-          <span class="slider round"></span>
+          <span class="slider round disabled essential"></span>
         </label>    
         <span class="settings-subtitle">These cookies are strictly necessary to provide you with services available and to use some of its features, for example access to secure areas. Because these cookies are strictly necessary to deliver our services safely, you cannot refuse them without impacting how our website functions. You can block or delete them by changing your browser settings.</span>    
       </div>
       <div class="js-cookie-consent-toogle-box-inner">
         <p class="settings-title">Marketing personalisation / retargeting cookies</p>
-        <label class="switch marketing">
+        <label class="switch">
           <input type="checkbox">
-          <span class="slider round"></span>
+          <span class="slider round marketing"></span>
         </label>        
         <span class="settings-subtitle">These cookies and pixels are used to make advertising messages more relevant to you and your interests. They also perform functions like preventing the same ad from continuously reappearing, ensuring that ads display properly  and in some cases selecting advertisements based on your interests. Further, we are using these cookies and pixels in order to exclude you from N26 advertising and to help to better define user groups. </span>
       </div>
       <div class="js-cookie-consent-toogle-box-inner">
         <p class="settings-title">Marketing analytics cookies</p>
-        <label class="switch analytics">
+        <label class="switch">
           <input type="checkbox">
-          <span class="slider round"></span>
+          <span class="slider round analytics"></span>
         </label>
         <span class="settings-subtitle">These cookies collect information that is used either in aggregate form to help us understand how visitors use our website or how effective our marketing campaigns are. They help us to customize our sites and the signup to enhance your experience.</span>
       </div>
       <div class="save-cookies-btn-box">
-        <button class="btn save-cookies">Save cookie settings</button>
+        <button id="saveCookieSettings" class="btn save-cookies">Save cookie settings</button>
       </div>
     </div>
 
     <div class="btn-box">
-      <button id="accept-all" class="btn accept">Accept all</button>
-      <button id="open-settings" class="btn open-settings">Cookie settings</button>
+      <button id="acceptAllCookies" class="btn accept">Accept all</button>
+      <button id="openCookieSettings" class="btn open-settings">Cookie settings</button>
     </div>
   </div>
 
