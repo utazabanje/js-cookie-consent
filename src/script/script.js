@@ -40,14 +40,18 @@ const cookieConsent = (config) => {
 };
 
 const createLearnMoreLink = (elem, link) => {
-  let learnMore = document.createElement("a");
-  learnMore.innerHTML = "Learn More";
-  learnMore.setAttribute("href", link);
-  learnMore.setAttribute("target", "_blank");
-  learnMore.setAttribute("rel", "noopener noreferrer");
-  learnMore.classList.add("learn-more");
+  if (link === undefined || link === null || link?.length === 0) {
+    return
+  } else {
+    let learnMore = document.createElement("a");
+    learnMore.innerHTML = "Learn More";
+    learnMore.setAttribute("href", link);
+    learnMore.setAttribute("target", "_blank");
+    learnMore.setAttribute("rel", "noopener noreferrer");
+    learnMore.classList.add("learn-more");
 
-  elem.appendChild(learnMore);
+    elem.appendChild(learnMore);
+  }
 };
 
 const createSaveCookieBtn = (elem, box, expiration) => {
