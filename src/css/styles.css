@@ -184,7 +184,7 @@ body {
   transition: .4s;
 }
 
-input:checked + .slider {
+.slider.checked {
   background-color: #42ab9e;
 }
 
