@@ -14,16 +14,16 @@ const cookieConsent = (config) => {
     return;
   } else {
     cookieToggleBox.style.display = "none";
-    mainTitle.innerHTML = config?.title;
+    mainTitle.innerHTML = config?.message;
 
-    if (config?.messages.length > 0) {
-      for (let i = config?.messages.length - 1; i >= 0; i--) {
-        createToggleBtns(cookieToggleBox, config?.messages[i], config?.color);
-        if (config.messages[i].checked) {
-          keysArray.push(config?.messages[i].key);
+    if (config?.options.length > 0) {
+      for (let i = config?.options.length - 1; i >= 0; i--) {
+        createToggleBtns(cookieToggleBox, config?.options[i], config?.color);
+        if (config.options[i].checked) {
+          keysArray.push(config?.options[i].key);
         }
 
-        acceptAllKeysArray.push(config?.messages[i].key);
+        acceptAllKeysArray.push(config?.options[i].key);
       }
 
       sessionStorage.setItem("categories", JSON.stringify(keysArray));
@@ -126,13 +126,13 @@ const createAcceptAndSettingsBtn = (
   elem.appendChild(openSettings);
 };
 
-const createToggleBtns = (elem, message, color) => {
+const createToggleBtns = (elem, options, color) => {
   let innerBox = crateToggleContainerElement();
-  let title = createTitleElement(message?.title);
-  let description = createDescriptionElement(message?.description);
-  let label = createLabelElement(message?.key);
-  let input = createInputElement(message?.checked);
-  let slider = createSliderElement(message, color);
+  let title = createTitleElement(options?.title);
+  let description = createDescriptionElement(options?.description);
+  let label = createLabelElement(options?.key);
+  let input = createInputElement(options?.checked);
+  let slider = createSliderElement(options, color);
 
   label.appendChild(input);
   label.appendChild(slider);
@@ -165,15 +165,15 @@ const createDescriptionElement = (description) => {
   return descriptionContainer;
 };
 
-const createSliderElement = (message, color) => {
+const createSliderElement = (options, color) => {
   let span = document.createElement("span");
-  span.classList.add("slider", "round", message?.key);
+  span.classList.add("slider", "round", options?.key);
 
-  if (message?.disabled) {
+  if (options?.disabled) {
     span.classList.add("disabled");
   }
 
-  if (message?.checked) {
+  if (options?.checked) {
     span.classList.add("checked");
 
     if (color) {
@@ -193,7 +193,7 @@ const createSliderElement = (message, color) => {
         e.target.style.backgroundColor = color;
       }
       e.stopPropagation();
-      toggleValueInArray(message?.key);
+      toggleValueInArray(options?.key);
     }
   });
 
