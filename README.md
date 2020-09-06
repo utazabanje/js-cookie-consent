@@ -12,8 +12,8 @@ You can get the library via ```npm```
 ```
 cookieConsent({
   cookieName: 'cookiesGDPR',
-  title: 'We use 🍪 to provide you with the...',
-  messages: [
+  message: 'We use 🍪 to provide you with the...',
+  options: [
     {
       title: 'Essential cookies',
       description: 'These cookies are strictly necessary to provide you...',
@@ -48,13 +48,13 @@ cookieConsent({
 | key     | value | type | requred
 | ---      | ---   | --- | --- |
 | cookieName | name of the cookie that is going to be saved   | string  | true
-| title     | main message that is going to be displayed in the cookie     | string   | true
-| messages | array of toggle checkboxes and text | array | true
-| messages[title] | headline of the toggle box | string | true
-| messages[description] | description of the toggle box | string | true
-| messages[key] | key value that will be stored in ```cookieName array``` | string | true
-| messages[disabled] | is toggle disabled and cannot be clicked | bool | true
-| messages[checked] | is toggle checked by default | bool | true
+| message     | main message that is going to be displayed in the cookie     | string   | true
+| options | array of toggle checkboxes and text | array | true
+| options[title] | headline of the toggle box | string | true
+| options[description] | description of the toggle box | string | true
+| options[key] | key value that will be stored in ```cookieName array``` | string | true
+| options[disabled] | is toggle disabled and cannot be clicked | bool | true
+| options[checked] | is toggle checked by default | bool | true
 | learnMore | link to your cookie info page | string   | optional
 | expiration | number of days to save the cookie | number | true
 | color | color of the buttons and toggle checkboxes | string (text, hex,rgb,rgba) | optional
