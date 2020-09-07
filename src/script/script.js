@@ -1,55 +1,60 @@
 const cookieConsent = (config) => {
   let cookieAvailable = getCookie(config?.cookieName);
-  let box = document.getElementById("js-cookie-consent-box");
-  let cookieToggleBox = document.querySelector(".js-cookie-consent-toogle-box");
-  let mainTitle = document.querySelector(".title");
-  let learnMoreBoxContainer = document.querySelector(".learn-more-box");
-  let saveCookieBoxContainer = document.querySelector(".save-cookies-btn-box");
-  let btnBoxContainer = document.querySelector(".btn-box");
-  let keysArray = [];
   let acceptAllKeysArray = [];
-
+  let box = document.createElement('div');
+  let mainTextBox = createMainTextBox(config?.message, config?.learnMore);
+  let toggleBoxInner = createMainToggleBox(config, box)
+  box.setAttribute('id', 'js-cookie-consent-box');
+  box.classList.add('slide-up');
+  
   if (cookieAvailable !== null) {
     box.style.display = "none";
     return;
   } else {
-    cookieToggleBox.style.display = "none";
-    mainTitle.innerHTML = config?.message;
-
-    if (config?.options.length > 0) {
-      for (let i = config?.options.length - 1; i >= 0; i--) {
-        createToggleBtns(cookieToggleBox, config?.options[i], config?.color);
-        if (config.options[i].checked) {
-          keysArray.push(config?.options[i].key);
-        }
-
-        acceptAllKeysArray.push(config?.options[i].key);
-      }
-
-      sessionStorage.setItem("categories", JSON.stringify(keysArray));
+    for (let i = 0; i < config?.options.length; i++) {
+      acceptAllKeysArray.push(config?.options[i].key);
     }
 
-    acceptOnScroll(config?.expiration, box, acceptAllKeysArray);
+    box.appendChild(mainTextBox)
+    box.appendChild(toggleBoxInner)
+    let actionBtns = createActionButtonBox(config, acceptAllKeysArray, box);
+    box.appendChild(actionBtns)
 
-    createLearnMoreLink(learnMoreBoxContainer, config?.learnMore);
-    createSaveCookieBtn(
-      saveCookieBoxContainer,
-      box,
-      config?.expiration,
-      config?.color
-    );
-    createAcceptAndSettingsBtn(
-      btnBoxContainer,
-      box,
-      cookieToggleBox,
-      acceptAllKeysArray,
-      config?.expiration,
-      config?.color
-    );
+    document.body.appendChild(box)
+
+    acceptOnScroll(config?.expiration, box, acceptAllKeysArray);
   }
 };
 
-const createLearnMoreLink = (elem, link) => {
+const createMainTextBox = (text, link) => {
+  let textBox = document.createElement('div');
+  let message = createMessage(text)
+  let linkBtn = createLearnMoreBox(link)
+  textBox.classList.add('js-cookie-consent-main-text-box');
+  textBox.appendChild(message);
+  textBox.appendChild(linkBtn)
+
+  return textBox
+}
+
+const createMessage = (text) => {
+  let message = document.createElement('p');
+  message.classList.add('title')
+  message.innerHTML = text
+
+  return message
+}
+
+const createLearnMoreBox = (link) => {
+  let learnMoreBox = document.createElement('span');
+  let linkBtn = createLearnMoreLink(link)
+  learnMoreBox.classList.add('learn-more-box');
+  learnMoreBox.appendChild(linkBtn)
+
+  return learnMoreBox;
+}
+
+const createLearnMoreLink = (link) => {
   if (link === undefined || link === null || link?.length === 0) {
     return;
   } else {
@@ -60,71 +65,35 @@ const createLearnMoreLink = (elem, link) => {
     learnMore.setAttribute("rel", "noopener noreferrer");
     learnMore.classList.add("learn-more");
 
-    elem.appendChild(learnMore);
+    return learnMore;
   }
 };
 
-const createSaveCookieBtn = (elem, box, expiration, color) => {
-  let saveCookie = document.createElement("button");
-  saveCookie.innerHTML = "Save cookie settings";
-  saveCookie.setAttribute("id", "saveCookieSettings");
-  saveCookie.classList.add("btn", "save-cookies");
+const createMainToggleBox = (config, mainBox) => {
+  let box = document.createElement('div');
+  let keysArray = [];
+  let acceptAllKeysArray = [];
+  let saveBtn = createSaveCookieBox(mainBox, config?.expiration, config?.color);
 
-  if (color) {
-    saveCookie.style.backgroundColor = color;
-  }
+  box.classList.add('js-cookie-consent-toogle-box');
 
-  saveCookie.addEventListener("click", () => {
-    let savedCookies = sessionStorage.getItem("categories");
+  if (config?.options.length > 0) {
+    for (let i = 0; i < config?.options.length; i++) {
+      createToggleBtns(box, config?.options[i], config?.color);
+      if (config.options[i].checked) {
+        keysArray.push(config?.options[i].key);
+      }
 
-    setCookie("cookiesGDPR", savedCookies, expiration);
-    box.style.display = "none";
-  });
-
-  elem.appendChild(saveCookie);
-};
-
-const createAcceptAndSettingsBtn = (
-  elem,
-  box,
-  toggleBox,
-  keys,
-  expiration,
-  color
-) => {
-  let acceptAllCookies = document.createElement("button");
-  let openSettings = document.createElement("button");
-  acceptAllCookies.innerHTML = "Accept all";
-  acceptAllCookies.setAttribute("id", "acceptAllCookies");
-  acceptAllCookies.classList.add("btn", "accept");
-  openSettings.innerHTML = "Cookie settings";
-  openSettings.setAttribute("id", "openCookieSettings");
-  openSettings.classList.add("btn", "open-settings");
-
-  if (color) {
-    acceptAllCookies.style.backgroundColor = color;
-  }
-
-  acceptAllCookies.addEventListener("click", () =>
-    acceptCookies(expiration, box, keys)
-  );
-
-  openSettings.addEventListener("click", () => {
-    let isOpen = box.classList.contains("slide-up");
-    box.setAttribute("class", isOpen ? "slide-down" : "slide-up");
-
-    if (toggleBox.style.display === "none") {
-      toggleBox.style.display = "block";
-    } else {
-      setTimeout(() => {
-        toggleBox.style.display = "none";
-      }, 750);
+      acceptAllKeysArray.push(config?.options[i].key);
     }
-  });
 
-  elem.appendChild(acceptAllCookies);
-  elem.appendChild(openSettings);
-};
+    sessionStorage.setItem("categories", JSON.stringify(keysArray));
+  }
+
+  box.appendChild(saveBtn)
+
+  return box
+}
 
 const createToggleBtns = (elem, options, color) => {
   let innerBox = crateToggleContainerElement();
@@ -139,7 +108,8 @@ const createToggleBtns = (elem, options, color) => {
   innerBox.appendChild(title);
   innerBox.appendChild(label);
   innerBox.appendChild(description);
-  elem.insertBefore(innerBox, elem.childNodes[0]);
+  
+  elem.appendChild(innerBox)
 };
 
 const crateToggleContainerElement = () => {
@@ -163,6 +133,79 @@ const createDescriptionElement = (description) => {
   descriptionContainer.innerHTML = description;
 
   return descriptionContainer;
+};
+
+const createActionButtonBox = (config, keys, box) => {
+  let btnBox = document.createElement('div');
+  let accept = createAcceptBtn(config?.expiration, box, config?.color, keys)
+  let openSettings = createOpenSettingsBtn(box)
+  btnBox.classList.add('btn-box');
+
+  btnBox.appendChild(accept);
+  btnBox.appendChild(openSettings)
+
+  return btnBox
+}
+
+const createAcceptBtn = (expiration, box, color, keys) => {
+  let acceptAllCookies = document.createElement("button");
+  acceptAllCookies.innerHTML = "Accept all";
+  acceptAllCookies.setAttribute("id", "acceptAllCookies");
+  acceptAllCookies.classList.add("btn", "accept");
+
+  if (color) {
+    acceptAllCookies.style.backgroundColor = color;
+  }
+
+  acceptAllCookies.addEventListener("click", () =>
+    acceptCookies(expiration, box, keys)
+  );
+
+  return acceptAllCookies;
+}
+
+const createOpenSettingsBtn = (box) => {
+  let openSettings = document.createElement("button");
+  openSettings.innerHTML = "Cookie settings";
+  openSettings.setAttribute("id", "openCookieSettings");
+  openSettings.classList.add("btn", "open-settings");
+
+  openSettings.addEventListener("click", () => {
+    let isOpen = box.classList.contains("slide-up");
+    box.setAttribute("class", isOpen ? "slide-down" : "slide-up");
+  });
+
+  return openSettings;
+}
+
+const createSaveCookieBox = (box, expiration, color) => {
+  let saveBox = document.createElement('div');
+  let btn = createSaveCookieBtn(box, expiration, color);
+  saveBox.classList.add('save-cookies-btn-box');
+
+  saveBox.appendChild(btn)
+
+  return saveBox
+}
+
+const createSaveCookieBtn = (box, expiration, color) => {
+  let saveCookie = document.createElement("button");
+  saveCookie.innerHTML = "Save cookie settings";
+  saveCookie.setAttribute("id", "saveCookieSettings");
+  saveCookie.classList.add("btn", "save-cookies");
+
+  if (color) {
+    saveCookie.style.backgroundColor = color;
+  }
+
+  saveCookie.addEventListener("click", () => {
+    let savedCookies = sessionStorage.getItem("categories");
+
+    setCookie("cookiesGDPR", savedCookies, expiration);
+    box.style.display = "none";
+  });
+
+  return saveCookie;
 };
 
 const createSliderElement = (options, color) => {
