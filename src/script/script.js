@@ -1,4 +1,4 @@
-const cookieConsent = (config) => {
+export const cookieConsent = (config) => {
   let cookieAvailable = getCookie(config?.cookieName);
   let acceptAllKeysArray = [];
   let box = document.createElement('div');
