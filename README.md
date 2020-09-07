@@ -6,7 +6,7 @@
 
 You can get the library via ```npm```
 
-```npm i ```
+```npm install js-cookie-consent```
 
 
 ```
