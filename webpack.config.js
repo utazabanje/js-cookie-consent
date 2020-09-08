@@ -6,7 +6,9 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    library: 'js-cookie-consent',
+    libraryTarget: 'umd'
   },
   plugins: [
     new MiniCssExtractPlugin({
