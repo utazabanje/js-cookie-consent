@@ -1,14 +1,14 @@
-import '../css/styles.css';
+import "../css/styles.css";
 
 const cookieConsent = (config) => {
   let cookieAvailable = getCookie(config?.cookieName);
   let acceptAllKeysArray = [];
-  let box = document.createElement('div');
+  let box = document.createElement("div");
   let mainTextBox = createMainTextBox(config?.message, config?.learnMore);
-  let toggleBoxInner = createMainToggleBox(config, box)
-  box.setAttribute('id', 'js-cookie-consent-box');
-  box.classList.add('slide-up');
-  
+  let toggleBoxInner = createMainToggleBox(config, box);
+  box.setAttribute("id", "js-cookie-consent-box");
+  box.classList.add("slide-up");
+
   if (cookieAvailable !== null) {
     box.style.display = "none";
     return;
@@ -17,67 +17,68 @@ const cookieConsent = (config) => {
       acceptAllKeysArray.push(config?.options[i].key);
     }
 
-    box.appendChild(mainTextBox)
-    box.appendChild(toggleBoxInner)
+    box.appendChild(mainTextBox);
+    box.appendChild(toggleBoxInner);
     let actionBtns = createActionButtonBox(config, acceptAllKeysArray, box);
-    box.appendChild(actionBtns)
+    box.appendChild(actionBtns);
 
-    document.body.appendChild(box)
+    document.body.appendChild(box);
 
     acceptOnScroll(config?.expiration, box, acceptAllKeysArray);
   }
 };
 
 const createMainTextBox = (text, link) => {
-  let textBox = document.createElement('div');
-  let message = createMessage(text)
-  let linkBtn = createLearnMoreBox(link)
-  textBox.classList.add('js-cookie-consent-main-text-box');
+  let textBox = document.createElement("div");
+  let message = createMessage(text);
+  let linkBtn = createLearnMoreBox(link);
+  textBox.classList.add("js-cookie-consent-main-text-box");
   textBox.appendChild(message);
-  textBox.appendChild(linkBtn)
+  textBox.appendChild(linkBtn);
 
-  return textBox
-}
+  return textBox;
+};
 
 const createMessage = (text) => {
-  let message = document.createElement('p');
-  message.classList.add('title')
-  message.innerHTML = text
+  let message = document.createElement("p");
+  message.classList.add("title");
+  message.innerHTML = text;
 
-  return message
-}
+  return message;
+};
 
 const createLearnMoreBox = (link) => {
-  let learnMoreBox = document.createElement('span');
-  let linkBtn = createLearnMoreLink(link)
-  learnMoreBox.classList.add('learn-more-box');
-  learnMoreBox.appendChild(linkBtn)
+  let learnMoreBox = document.createElement("span");
+  let linkBtn = createLearnMoreLink(link);
+  learnMoreBox.classList.add("learn-more-box");
+  learnMoreBox.appendChild(linkBtn);
 
   return learnMoreBox;
-}
+};
 
 const createLearnMoreLink = (link) => {
-  if (link === undefined || link === null || link?.length === 0) {
-    return;
-  } else {
-    let learnMore = document.createElement("a");
+  let emptyLink = document.createElement('a');
+  let learnMore = document.createElement("a");
     learnMore.innerHTML = "Learn More";
     learnMore.setAttribute("href", link);
     learnMore.setAttribute("target", "_blank");
     learnMore.setAttribute("rel", "noopener noreferrer");
     learnMore.classList.add("learn-more");
 
+  if (link === undefined || link === null || link?.length === 0) {
+    return emptyLink;
+  } else {
     return learnMore;
   }
 };
 
 const createMainToggleBox = (config, mainBox) => {
-  let box = document.createElement('div');
+  let box = document.createElement("div");
   let keysArray = [];
   let acceptAllKeysArray = [];
   let saveBtn = createSaveCookieBox(mainBox, config?.expiration, config?.color);
 
-  box.classList.add('js-cookie-consent-toogle-box');
+  box.classList.add("js-cookie-consent-toogle-box");
 
   if (config?.options.length > 0) {
     for (let i = 0; i < config?.options.length; i++) {
@@ -92,10 +93,10 @@ const createMainToggleBox = (config, mainBox) => {
     sessionStorage.setItem("categories", JSON.stringify(keysArray));
   }
 
-  box.appendChild(saveBtn)
+  box.appendChild(saveBtn);
 
-  return box
-}
+  return box;
+};
 
 const createToggleBtns = (elem, options, color) => {
   let innerBox = crateToggleContainerElement();
@@ -110,8 +111,8 @@ const createToggleBtns = (elem, options, color) => {
   innerBox.appendChild(title);
   innerBox.appendChild(label);
   innerBox.appendChild(description);
-  
-  elem.appendChild(innerBox)
+
+  elem.appendChild(innerBox);
 };
 
 const crateToggleContainerElement = () => {
@@ -138,16 +139,16 @@ const createDescriptionElement = (description) => {
 };
 
 const createActionButtonBox = (config, keys, box) => {
-  let btnBox = document.createElement('div');
-  let accept = createAcceptBtn(config?.expiration, box, config?.color, keys)
-  let openSettings = createOpenSettingsBtn(box)
-  btnBox.classList.add('btn-box');
+  let btnBox = document.createElement("div");
+  let accept = createAcceptBtn(config?.expiration, box, config?.color, keys);
+  let openSettings = createOpenSettingsBtn(box);
+  btnBox.classList.add("btn-box");
 
   btnBox.appendChild(accept);
-  btnBox.appendChild(openSettings)
+  btnBox.appendChild(openSettings);
 
-  return btnBox
-}
+  return btnBox;
+};
 
 const createAcceptBtn = (expiration, box, color, keys) => {
   let acceptAllCookies = document.createElement("button");
@@ -164,7 +165,7 @@ const createAcceptBtn = (expiration, box, color, keys) => {
   );
 
   return acceptAllCookies;
-}
+};
 
 const createOpenSettingsBtn = (box) => {
   let openSettings = document.createElement("button");
@@ -178,17 +179,17 @@ const createOpenSettingsBtn = (box) => {
   });
 
   return openSettings;
-}
+};
 
 const createSaveCookieBox = (box, expiration, color) => {
-  let saveBox = document.createElement('div');
+  let saveBox = document.createElement("div");
   let btn = createSaveCookieBtn(box, expiration, color);
-  saveBox.classList.add('save-cookies-btn-box');
+  saveBox.classList.add("save-cookies-btn-box");
 
-  saveBox.appendChild(btn)
+  saveBox.appendChild(btn);
 
-  return saveBox
-}
+  return saveBox;
+};
 
 const createSaveCookieBtn = (box, expiration, color) => {
   let saveCookie = document.createElement("button");
