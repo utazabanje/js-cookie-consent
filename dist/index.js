@@ -1,5 +1,7 @@
 "use strict";
 
+require("./css/styles.css");
+
 var cookieConsent = function cookieConsent(config) {
   if (config === null || config === undefined) {
     return;

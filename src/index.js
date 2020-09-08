@@ -1,3 +1,5 @@
+import "./css/styles.css";
+
 const cookieConsent = (config) => {
   if (config === null || config === undefined) {
     return;
