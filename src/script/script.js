@@ -113,6 +113,8 @@ const createToggleBtns = (elem, options, color) => {
   innerBox.appendChild(description);
 
   elem.appendChild(innerBox);
+
+  return innerBox
 };
 
 const crateToggleContainerElement = () => {
@@ -331,4 +333,4 @@ const setCookie = (name, value, exdays, path) => {
     name + "=" + value + ";" + expires + ";path=" + (path ? path : "/");
 };
 
-export default cookieConsent();
+export default cookieConsent;
