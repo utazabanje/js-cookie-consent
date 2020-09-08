@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    library: 'cookieConsent',
+    library: 'createCookieConsent',
     libraryExport: "default",
     globalObject: 'this',
     libraryTarget: 'umd'

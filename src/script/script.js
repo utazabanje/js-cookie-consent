@@ -1,9 +1,20 @@
 import "../css/styles.css";
 
+function createCookieConsent() {
+  return {
+      init: (config) => {
+          cookieConsent(config);
+      }
+  };
+}
+
 const cookieConsent = (config) => {
+  
+  console.log('started exec')
   if (config === null || config === undefined) {
     return
   }
+  console.log('config', config)
   let cookieAvailable = getCookie(config?.cookieName);
   let acceptAllKeysArray = [];
   let box = document.createElement("div");
@@ -26,6 +37,8 @@ const cookieConsent = (config) => {
     box.appendChild(actionBtns);
 
     document.body.appendChild(box);
+
+    console.log('final append child exec')
 
     acceptOnScroll(config?.expiration, box, acceptAllKeysArray);
   }
@@ -336,4 +349,4 @@ const setCookie = (name, value, exdays, path) => {
     name + "=" + value + ";" + expires + ";path=" + (path ? path : "/");
 };
 
-export default cookieConsent();
+export default createCookieConsent();
