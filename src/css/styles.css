@@ -90,6 +90,7 @@ body {
 
 .js-cookie-consent-toogle-box-inner {
   position: relative;
+  margin-top: 40px;
 }
 
 .settings-title {

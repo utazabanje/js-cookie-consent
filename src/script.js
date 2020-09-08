@@ -1,20 +1,7 @@
-import "../css/styles.css";
-
-function createCookieConsent() {
-  return {
-      init: (config) => {
-          cookieConsent(config);
-      }
-  };
-}
-
 const cookieConsent = (config) => {
-  
-  console.log('started exec')
   if (config === null || config === undefined) {
-    return
+    return;
   }
-  console.log('config', config)
   let cookieAvailable = getCookie(config?.cookieName);
   let acceptAllKeysArray = [];
   let box = document.createElement("div");
@@ -37,8 +24,6 @@ const cookieConsent = (config) => {
     box.appendChild(actionBtns);
 
     document.body.appendChild(box);
-
-    console.log('final append child exec')
 
     acceptOnScroll(config?.expiration, box, acceptAllKeysArray);
   }
@@ -73,13 +58,13 @@ const createLearnMoreBox = (link) => {
 };
 
 const createLearnMoreLink = (link) => {
-  let emptyLink = document.createElement('a');
+  let emptyLink = document.createElement("a");
   let learnMore = document.createElement("a");
-    learnMore.innerHTML = "Learn More";
-    learnMore.setAttribute("href", link);
-    learnMore.setAttribute("target", "_blank");
-    learnMore.setAttribute("rel", "noopener noreferrer");
-    learnMore.classList.add("learn-more");
+  learnMore.innerHTML = "Learn More";
+  learnMore.setAttribute("href", link);
+  learnMore.setAttribute("target", "_blank");
+  learnMore.setAttribute("rel", "noopener noreferrer");
+  learnMore.classList.add("learn-more");
 
   if (link === undefined || link === null || link?.length === 0) {
     return emptyLink;
@@ -94,7 +79,7 @@ const createMainToggleBox = (config, mainBox) => {
   let acceptAllKeysArray = [];
   let saveBtn = createSaveCookieBox(mainBox, config?.expiration, config?.color);
 
-  box.classList.add("js-cookie-consent-toogle-box");
+  box.classList.add("js-cookie-consent-toogle-box", "closed");
 
   if (config?.options.length > 0) {
     for (let i = 0; i < config?.options.length; i++) {
@@ -130,7 +115,7 @@ const createToggleBtns = (elem, options, color) => {
 
   elem.appendChild(innerBox);
 
-  return innerBox
+  return innerBox;
 };
 
 const crateToggleContainerElement = () => {
@@ -349,4 +334,4 @@ const setCookie = (name, value, exdays, path) => {
     name + "=" + value + ";" + expires + ";path=" + (path ? path : "/");
 };
 
-export default createCookieConsent();
+module.exports = cookieConsent;

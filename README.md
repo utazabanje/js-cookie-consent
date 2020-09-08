@@ -8,8 +8,9 @@ You can get the library via ```npm```
 
 ```npm install js-cookie-consent```
 
-
 ```
+import cookieConsent from 'js-cookie-consent'
+
 cookieConsent({
   cookieName: 'cookiesGDPR',
   message: 'We use 🍪 to provide you with the...',
