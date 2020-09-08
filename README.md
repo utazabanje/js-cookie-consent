@@ -1,6 +1,6 @@
 # js-cookie-consent
 
-[JS Cookie Consent](https://utazabanje.github.io/js-cookie-consent/) is a JavaScript library for showing cookie consent notice on your webiste.
+[JS Cookie Consent](https://github.com/utazabanje/js-cookie-consent#readme) is a JavaScript library for showing cookie consent notice on your webiste.
 
 #### How to use it:
 
