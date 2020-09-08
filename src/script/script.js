@@ -1,4 +1,6 @@
-module.exports = function cookieConsent(config) {
+import '../css/styles.css';
+
+const cookieConsent = (config) => {
   let cookieAvailable = getCookie(config?.cookieName);
   let acceptAllKeysArray = [];
   let box = document.createElement('div');
@@ -327,3 +329,5 @@ const setCookie = (name, value, exdays, path) => {
   document.cookie =
     name + "=" + value + ";" + expires + ";path=" + (path ? path : "/");
 };
+
+export default cookieConsent();
