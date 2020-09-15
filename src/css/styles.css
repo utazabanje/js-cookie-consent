@@ -13,7 +13,7 @@ body {
   bottom: 10px;
   left: 10px;
   border-radius: 10px;
-  z-index: 101;
+  z-index: 1500;
   overflow: hidden;
   border: 1px solid #eee;
   box-shadow: 1px 1px 8px #eee;
@@ -55,7 +55,7 @@ body {
   font-size: 14px;
 }
 
-.title {
+.js-cookie-consent-main-text-box .title {
   font-size: 12px;
 }
 
