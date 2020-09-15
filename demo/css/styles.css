@@ -51,7 +51,7 @@ body {
 
 .js-cookie-consent-main-text-box {
   color: #999;
-  padding: 0 20px 20px 20px;
+  padding: 20px;
   font-size: 14px;
 }
 
@@ -77,7 +77,7 @@ body {
   padding: 0 20px 20px 20px;
   font-size: 12px;
   overflow-y: scroll;
-  height: calc(100% - 300px);
+  height: calc(100% - 330px);
 }
 
 .js-cookie-consent-toogle-box::-webkit-scrollbar {
@@ -101,6 +101,11 @@ body {
   width: 78%;
 }
 
+.learn-more-box {
+  margin-top: 10px;
+  display: inline-block;
+}
+
 .btn-box {
   position: absolute;
   bottom: 0;
@@ -111,7 +116,7 @@ body {
   background-color: #fff;
 }
 
-.btn {
+.button {
   letter-spacing: 1px;
   padding: 10px 15px;
   border: none;
@@ -119,7 +124,7 @@ body {
   cursor: pointer;
 }
 
-.btn.accept {
+.button.accept {
   position: absolute;
   bottom: 30px;
   left: 20px;
@@ -128,7 +133,7 @@ body {
   border-radius: 200px;
 }
 
-.btn.open-settings {
+.button.open-settings {
   position: absolute;
   bottom: 30px;
   right: 20px;
@@ -141,7 +146,7 @@ body {
   margin-top: 30px;
 }
 
-.btn.save-cookies {
+.button.save-cookies {
   left: 15px;
   background-color: #42ab9e;
   color: #fff;

@@ -43,7 +43,7 @@ const createMainTextBox = (text, link) => {
 };
 
 const createMessage = (text) => {
-  let message = document.createElement("p");
+  let message = document.createElement("div");
   message.classList.add("title");
   message.innerHTML = text;
 
@@ -159,7 +159,7 @@ const createAcceptBtn = (expiration, box, color, keys) => {
   let acceptAllCookies = document.createElement("button");
   acceptAllCookies.innerHTML = "Accept all";
   acceptAllCookies.setAttribute("id", "acceptAllCookies");
-  acceptAllCookies.classList.add("btn", "accept");
+  acceptAllCookies.classList.add("button", "accept");
 
   if (color) {
     acceptAllCookies.style.backgroundColor = color;
@@ -176,7 +176,7 @@ const createOpenSettingsBtn = (box) => {
   let openSettings = document.createElement("button");
   openSettings.innerHTML = "Cookie settings";
   openSettings.setAttribute("id", "openCookieSettings");
-  openSettings.classList.add("btn", "open-settings");
+  openSettings.classList.add("button", "open-settings");
 
   openSettings.addEventListener("click", () => {
     let isOpen = box.classList.contains("slide-up");
@@ -200,7 +200,7 @@ const createSaveCookieBtn = (box, expiration, color) => {
   let saveCookie = document.createElement("button");
   saveCookie.innerHTML = "Save cookie settings";
   saveCookie.setAttribute("id", "saveCookieSettings");
-  saveCookie.classList.add("btn", "save-cookies");
+  saveCookie.classList.add("button", "save-cookies");
 
   if (color) {
     saveCookie.style.backgroundColor = color;
