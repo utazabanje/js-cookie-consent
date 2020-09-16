@@ -116,7 +116,7 @@ body {
   background-color: #fff;
 }
 
-.button {
+.btn-box .button {
   font-size: 11px !important;
   letter-spacing: 1px;
   padding: 10px 15px;
