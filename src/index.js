@@ -26,8 +26,6 @@ const cookieConsent = (config) => {
     box.appendChild(actionBtns);
 
     document.body.appendChild(box);
-
-    acceptOnScroll(config?.expiration, box, acceptAllKeysArray);
   }
 };
 
@@ -288,22 +286,6 @@ const toggleValueInArray = (value) => {
 const acceptCookies = (config, box, keys) => {
   setCookie("cookiesGDPR", JSON.stringify(keys), config?.expiration);
   box.style.display = "none";
-};
-
-const amountScrolled = () => {
-  return (
-    window.innerHeight + document.documentElement.scrollTop ===
-    document.documentElement.offsetHeight
-  );
-};
-
-const acceptOnScroll = (config, box, keys) => {
-  window.addEventListener("scroll", function _listener() {
-    if (amountScrolled()) {
-      acceptCookies(config, box, keys);
-      window.removeEventListener("click", _listener);
-    }
-  });
 };
 
 const getCookie = (name) => {
