@@ -27,7 +27,7 @@ body {
   height: 285px;
 }
 
-.slide-down {
+#js-cookie-consent-box.slide-down {
   height: 95%;
 }
 
@@ -59,14 +59,14 @@ body {
   font-size: 12px;
 }
 
-.js-cookie-consent-main-text-box .learn-more {
+.js-cookie-consent-main-text-box .cookie-consent-learn-more {
   color: #999;
   text-decoration: underline;
   outline: none;
   position: relative;
 }
 
-.js-cookie-consent-main-text-box .learn-more svg {
+.js-cookie-consent-main-text-box .cookie-consent-learn-more svg {
   position: absolute;
   width: 20px;
   right: -16px;
@@ -94,19 +94,19 @@ body {
   margin-top: 40px;
 }
 
-.settings-title {
+.cookie-consent-settings-title {
   font-size: 17px;
   font-weight: 700;
   color: #000;
   width: 78%;
 }
 
-.learn-more-box {
+.cookie-consent-learn-more-box {
   margin-top: 10px;
   display: inline-block;
 }
 
-.btn-box {
+.cookie-consent-btn-box {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -116,7 +116,7 @@ body {
   background-color: #fff;
 }
 
-.btn-box .button {
+.cookie-consent-button {
   font-size: 11px !important;
   letter-spacing: 1px;
   padding: 10px 15px;
@@ -125,7 +125,7 @@ body {
   cursor: pointer;
 }
 
-.button.accept {
+.cookie-consent-button.accept {
   position: absolute;
   bottom: 30px;
   left: 20px;
@@ -134,7 +134,7 @@ body {
   border-radius: 200px;
 }
 
-.button.open-settings {
+.cookie-consent-button.open-settings {
   position: absolute;
   bottom: 30px;
   right: 20px;
@@ -143,18 +143,18 @@ body {
   text-decoration: underline;
 }
 
-.save-cookies-btn-box {
+.save-cookie-consent-btn-box {
   margin-top: 30px;
 }
 
-.button.save-cookies {
+.cookie-consent-button.save-cookies {
   left: 15px;
   background-color: #42ab9e;
   color: #fff;
   border-radius: 200px;
 }
 
-.switch {
+.js-cookie-consent-toogle-box-inner .switch {
   position: absolute;
   right: 0;
   top: -7px;
@@ -162,13 +162,13 @@ body {
   height: 34px;
 }
 
-.switch input { 
+.js-cookie-consent-toogle-box-inner .switch input { 
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.slider {
+.js-cookie-consent-toogle-box-inner .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -180,7 +180,7 @@ body {
   transition: .4s;
 }
 
-.slider:before {
+.js-cookie-consent-toogle-box-inner .slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -192,29 +192,29 @@ body {
   transition: .4s;
 }
 
-.slider.checked {
+.js-cookie-consent-toogle-box-inner .slider.checked {
   background-color: #42ab9e;
 }
 
-input:checked + .slider.disabled {
+.js-cookie-consent-toogle-box-inner input:checked + .slider.disabled {
   opacity: 0.6;
 }
 
-input:focus + .slider {
+.js-cookie-consent-toogle-box-inner input:focus + .slider {
   box-shadow: 0 0 1px #42ab9e;
 }
 
-input:checked + .slider:before {
+.js-cookie-consent-toogle-box-inner input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
-.slider.round {
+.js-cookie-consent-toogle-box-inner .slider.round {
   border-radius: 34px;
 }
 
-.slider.round:before {
+.js-cookie-consent-toogle-box-inner .slider.round:before {
   border-radius: 50%;
 }
 
@@ -225,7 +225,7 @@ input:checked + .slider:before {
     left: 50px;
   }
 
-  .slide-down {
+  #js-cookie-consent-box.slide-down {
     height: 90%;
   }
 

@@ -49,7 +49,7 @@ const createMessage = (text) => {
 const createLearnMoreBox = (link) => {
   let learnMoreBox = document.createElement("span");
   let linkBtn = createLearnMoreLink(link);
-  learnMoreBox.classList.add("learn-more-box");
+  learnMoreBox.classList.add("cookie-consent-learn-more-box");
   learnMoreBox.appendChild(linkBtn);
 
   return learnMoreBox;
@@ -62,7 +62,7 @@ const createLearnMoreLink = (link) => {
   learnMore.setAttribute("href", link);
   learnMore.setAttribute("target", "_blank");
   learnMore.setAttribute("rel", "noopener noreferrer");
-  learnMore.classList.add("learn-more");
+  learnMore.classList.add("cookie-consent-learn-more");
 
   if (link === undefined || link === null || link?.length === 0) {
     return emptyLink;
@@ -125,7 +125,7 @@ const crateToggleContainerElement = () => {
 
 const createTitleElement = (title) => {
   let titleContainer = document.createElement("p");
-  titleContainer.classList.add("settings-title");
+  titleContainer.classList.add("cookie-consent-settings-title");
   titleContainer.innerHTML = title;
 
   return titleContainer;
@@ -143,7 +143,7 @@ const createActionButtonBox = (config, keys, box) => {
   let btnBox = document.createElement("div");
   let accept = createAcceptBtn(config?.expiration, box, config?.color, keys);
   let openSettings = createOpenSettingsBtn(box);
-  btnBox.classList.add("btn-box");
+  btnBox.classList.add("cookie-consent-btn-box");
 
   btnBox.appendChild(accept);
   btnBox.appendChild(openSettings);
@@ -155,7 +155,7 @@ const createAcceptBtn = (expiration, box, color, keys) => {
   let acceptAllCookies = document.createElement("button");
   acceptAllCookies.innerHTML = "Accept all";
   acceptAllCookies.setAttribute("id", "acceptAllCookies");
-  acceptAllCookies.classList.add("button", "accept");
+  acceptAllCookies.classList.add("cookie-consent-button", "accept");
 
   if (color) {
     acceptAllCookies.style.backgroundColor = color;
@@ -172,7 +172,7 @@ const createOpenSettingsBtn = (box) => {
   let openSettings = document.createElement("button");
   openSettings.innerHTML = "Cookie settings";
   openSettings.setAttribute("id", "openCookieSettings");
-  openSettings.classList.add("button", "open-settings");
+  openSettings.classList.add("cookie-consent-button", "open-settings");
 
   openSettings.addEventListener("click", () => {
     let isOpen = box.classList.contains("slide-up");
@@ -185,7 +185,7 @@ const createOpenSettingsBtn = (box) => {
 const createSaveCookieBox = (box, expiration, color) => {
   let saveBox = document.createElement("div");
   let btn = createSaveCookieBtn(box, expiration, color);
-  saveBox.classList.add("save-cookies-btn-box");
+  saveBox.classList.add("save-cookie-consent-btn-box");
 
   saveBox.appendChild(btn);
 
@@ -196,7 +196,7 @@ const createSaveCookieBtn = (box, expiration, color) => {
   let saveCookie = document.createElement("button");
   saveCookie.innerHTML = "Save cookie settings";
   saveCookie.setAttribute("id", "saveCookieSettings");
-  saveCookie.classList.add("button", "save-cookies");
+  saveCookie.classList.add("cookie-consent-button", "save-cookies");
 
   if (color) {
     saveCookie.style.backgroundColor = color;
