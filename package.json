@@ -1,6 +1,6 @@
 {
   "name": "js-cookie-consent",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "GDPR cookie consent",
   "main": "dist/index.js",
   "scripts": {
