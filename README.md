@@ -2,6 +2,8 @@
 
 [JS Cookie Consent](https://utazabanje.github.io/js-cookie-consent/) is a JavaScript library for showing cookie consent notice on your webiste.
 
+From version 1.3.0 you will have to manually include css stylings like in the provided description.
+
 #### How to use it:
 
 You can get the library via ```npm```
@@ -10,6 +12,7 @@ You can get the library via ```npm```
 
 ```
 import cookieConsent from 'js-cookie-consent'
+import 'js-cookie-consent/dist/css/styles.css'
 
 cookieConsent({
   cookieName: 'cookiesGDPR',
